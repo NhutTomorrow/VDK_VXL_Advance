@@ -1,0 +1,10 @@
+led_display.c:13:6:set_rgy1	16	static
+led_display.c:17:6:set_rgy2	16	static
+led_display.c:22:6:toggle_rgy	16	static
+led_display.c:42:6:toggle_red1	8	static
+led_display.c:46:6:toggle_yel1	8	static
+led_display.c:49:6:toggle_gre1	8	static
+led_display.c:53:6:toggle_red2	8	static
+led_display.c:57:6:toggle_yel2	8	static
+led_display.c:60:6:toggle_gre2	8	static
+led_display.c:64:6:toggle_yel_gre	8	static

@@ -1,0 +1,10 @@
+input_processing.c:30:6:button_processing	16	static
+input_processing.c:107:6:single_press_handler	16	static
+input_processing.c:111:6:double_press_handler	16	static
+input_processing.c:115:6:immediately_1s_press	16	static
+input_processing.c:119:6:continuously_press_handler	16	static
+input_processing.c:124:5:isSinglePressed	16	static
+input_processing.c:129:5:isDoublePressed	16	static
+input_processing.c:133:5:isImmediately1sPressed	16	static
+input_processing.c:138:5:isContinuouslyPressed	16	static
+input_processing.c:143:6:resetButton	16	static

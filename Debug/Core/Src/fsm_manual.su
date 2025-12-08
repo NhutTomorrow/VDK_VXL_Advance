@@ -1,0 +1,6 @@
+fsm_manual.c:11:6:fsm_manual	4	static
+fsm_manual.c:40:6:manual_red1_gre2	4	static
+fsm_manual.c:43:6:manual_red1_yel2	4	static
+fsm_manual.c:46:6:manual_gre1_red2	4	static
+fsm_manual.c:49:6:manual_yel1_red2	4	static
+fsm_manual.c:52:6:manual_all_yel	4	static

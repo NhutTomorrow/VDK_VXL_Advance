@@ -1,0 +1,13 @@
+fsm_config.c:16:6:init_test	8	static
+fsm_config.c:34:6:fsm_config	8	static
+fsm_config.c:75:6:set_red1_handler	16	static
+fsm_config.c:131:6:set_yel1_handler	16	static
+fsm_config.c:186:6:set_gre1_handler	16	static
+fsm_config.c:242:6:set_red2_handler	24	static
+fsm_config.c:361:6:set_yel2_handler	16	static
+fsm_config.c:416:6:set_gre2_handler	16	static
+fsm_config.c:500:6:err_syn_r2_handler	16	static
+fsm_config.c:552:6:err_syn_gy2_handler	16	static
+fsm_config.c:594:6:change_continuously_newtime	8	static
+fsm_config.c:610:6:ERR_SYN_R2_to_SET_YEL2	16	static
+fsm_config.c:634:6:ERR_SYN_GY2_to_AUTOMATIC_MODE	16	static
