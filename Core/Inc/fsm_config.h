@@ -8,13 +8,6 @@
 #ifndef INC_FSM_CONFIG_H_
 #define INC_FSM_CONFIG_H_
 
-
-
-void init_test();
-
-
-
-
 void fsm_config(void);
 
 void set_red1_handler();

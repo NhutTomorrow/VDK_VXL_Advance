@@ -10,11 +10,7 @@
 
 #include <global.h>
 
-
-
-
-void traffic_light_automatic();
-
+void fsm_automatic();
 
 
 

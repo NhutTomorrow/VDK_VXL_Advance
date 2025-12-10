@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stdint.h"
+
 #define SCH_MAX_TASKS 40
 #define NO_TASK_ID 0
 
@@ -32,17 +33,20 @@ typedef struct List_sTask {
 
 
 void SCH_Init(void);
+
 unsigned char SCH_Add_Task(void (* pFunction) () , unsigned int DELAY, unsigned int PERIOD);
 void addAt(void (* pFunction) () , unsigned int DELAY, unsigned int PERIOD, int index);
+
 unsigned char SCH_Delete_Task(const tByte TASK_INDEX);
+
 int SCH_Get_TaskID(void (* pFunction) ());
+
 void SCH_Dispatch_Tasks(void);
 void SCH_Update(void);
 
 void rearrange_ID();
 
-//void SCH_Go_To_Sleep();
-//void SCH_Report_Status(void);
+
 
 
 

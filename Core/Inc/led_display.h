@@ -10,8 +10,8 @@
 
 #include "main.h"
 
-void set_rgy1(uint8_t n);
-void set_rgy2(uint8_t n);
+void set_rgy1(int color);
+void set_rgy2(int color);
 
 void toggle_rgy(uint8_t n);
 
@@ -25,9 +25,10 @@ void toggle_gre2();
 
 void toggle_yel_gre();
 
-// void display7SEG(int num);
-// void update7SEG(int index);
-// void updateLEDBuffer1(int num);
-// void updateLEDBuffer2(int num);
+void manual_red1_gre2();
+void manual_red1_yel2();
+void manual_gre1_red2();
+void manual_yel1_red2();
+void manual_all_yel();
 
 #endif /* INC_LED_DISPLAY_H_ */

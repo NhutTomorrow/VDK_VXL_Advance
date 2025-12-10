@@ -10,6 +10,15 @@
 #include <stdio.h>
 
 char str_buff[20];
+void display_init_mode(){
+	lcd_clear_display();
+	lcd_goto_XY(1,1);
+	lcd_send_string("   ");
+
+	lcd_goto_XY(2,1);
+	lcd_send_string(" INIT_MODE");
+}
+
 void display_set_config(){
 	lcd_clear_display();
 
@@ -141,78 +150,56 @@ void display_value_confirmed(){
 
 void display_manual_mode(){
 	lcd_clear_display();
+	lcd_goto_XY(1,1);
+	lcd_send_string("   ");
+
 	lcd_goto_XY(2,1);
 	lcd_send_string(" MANUAL_MODE");
 }
 
 void display_auto_mode(){
 	lcd_clear_display();
+
 	lcd_goto_XY(1,1);
 	switch(auto_state){
 	case RED1_GRE2_AUTO:
-
 		sprintf(str_buff, " RED1: %d", time_road1);
+		lcd_send_string(str_buff);
 
-
+		lcd_goto_XY(2,1);
+		sprintf(str_buff, " GRE2: %d", time_road2);
+		lcd_send_string(str_buff);
 		break;
 
 	case RED1_YEL2_AUTO:
+		sprintf(str_buff, " RED1: %d", time_road1);
+		lcd_send_string(str_buff);
 
-	        sprintf(str_buff, " RED1: %d  ", time_road1);
+		lcd_goto_XY(2,1);
+		sprintf(str_buff, " YEL2: %d", time_road2);
+		lcd_send_string(str_buff);
+	    break;
 
-	        break;
+	case GRE1_RED2_AUTO:
+		sprintf(str_buff, " GRE1: %d", time_road1);
+		lcd_send_string(str_buff);
 
-	    // TRƯỜNG HỢP 3: Lộ 1 XANH - Lộ 2 ĐỎ
-	    case GRE1_RED2_AUTO:
-
-	        sprintf(str_buff, " GRE1: %d  ", time_road1);
-
-	        break;
-
-	    // TRƯỜNG HỢP 4: Lộ 1 VÀNG - Lộ 2 ĐỎ (Lộ 1 sắp đỏ)
-	    case YEL1_RED2_AUTO:
-
-	        sprintf(str_buff, " YEL1: %d  ", time_road1);
-
-	        break;
-
-	    default:
-	        break;
-
-	}
-	lcd_send_string(str_buff);
-	lcd_goto_XY(2,1);
-	switch(auto_state){
-	case RED1_GRE2_AUTO:
-
-			sprintf(str_buff, " GRE2: %d", time_road2);
-
-
+		lcd_goto_XY(2,1);
+		sprintf(str_buff, " RED2: %d", time_road2);
+		lcd_send_string(str_buff);
 		break;
 
-	case RED1_YEL2_AUTO:
+	case YEL1_RED2_AUTO:
+		sprintf(str_buff, " YEL1: %d", time_road1);
+		lcd_send_string(str_buff);
 
-	        sprintf(str_buff, " YEL2: %d  ", time_road2);
+		lcd_goto_XY(2,1);
+		sprintf(str_buff, " RED2: %d", time_road2);
+		lcd_send_string(str_buff);
+		break;
 
-	        break;
-
-	    // TRƯỜNG HỢP 3: Lộ 1 XANH - Lộ 2 ĐỎ
-	    case GRE1_RED2_AUTO:
-
-	        sprintf(str_buff, " RED2: %d  ", time_road2);
-
-	        break;
-
-	    // TRƯỜNG HỢP 4: Lộ 1 VÀNG - Lộ 2 ĐỎ (Lộ 1 sắp đỏ)
-	    case YEL1_RED2_AUTO:
-
-	        sprintf(str_buff, " RED2: %d  ", time_road2);
-
-	        break;
-
-	    default:
-	        break;
-
+	default:
+		break;
 	}
-	lcd_send_string(str_buff);
+
 }

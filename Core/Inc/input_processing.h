@@ -17,7 +17,6 @@ void continuously_press_handler(int index);
 
 int isSinglePressed(int button_idx);
 int isDoublePressed(int button_idx);
-int isImmediately1sPressed(int button_idx);
 int isContinuouslyPressed(int button_idx);
 
 void resetButton(int button_idx);

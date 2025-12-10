@@ -8,7 +8,23 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
+#include "fsm_system.h"
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "fsm_config.h"
+
+#include "input_processing.h"
+#include "lcd_display.h"
+#include "led_display.h"
+
 #include "software_timer.h"
+#include "scheduler.h"
+
+#define LED_RED 0
+#define LED_GREEN 1
+#define LED_YELLOW 2
+#define LED_OFF 3
+
 /// Các trạng thái hệ thống
 typedef enum {
     INIT_MODE,
@@ -19,13 +35,10 @@ typedef enum {
 
 // Các trạng thái khi chạy đèn giao thông bằng tay
 typedef enum {
-	INIT_MANUAL,
-	RED1_GRE2,
-	RED1_YEL2,
-	GRE1_RED2,
-	YEL1_RED2,
-	HANDLE_MANUAL,
-    ALL_YEL
+	RED1_GRE2_MANU,
+	RED1_YEL2_MANU,
+	GRE1_RED2_MANU,
+	YEL1_RED2_MANU,
 } ManualState_t;
 
 // Các trạng thái khi chạy đèn giao thông tự động
@@ -56,18 +69,6 @@ extern SystemState_t sys_state;
 extern ManualState_t manual_state;
 extern AutomaticState_t auto_state;
 extern ConfigState_t config_state;
-
-// extern int single_1;
-// extern int single_2;
-// extern int single_3;
-
-// extern int double_1;
-// extern int double_2;
-// extern int double_3;
-
-// extern int long_1;
-// extern int long_2;
-// extern int long_3;
 
 // Đếm ngược trong các trạng thái ERR
 extern int countdown;

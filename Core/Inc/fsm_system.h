@@ -13,5 +13,5 @@ void fsm_system(void);
 void init_handler();
 void auto_handler();
 void manual_handler();
-void config_handler();
+
 #endif /* INC_FSM_MANUAL_H_ */

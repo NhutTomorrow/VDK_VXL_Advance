@@ -20,12 +20,8 @@ int double_press_button[3] = {0, 0, 0};
 int immediately_1s_press_button[3] = {0, 0, 0};
 int continuously_1s_press_button[3] = {0, 0, 0};
 
-
-
 uint8_t flag_just_double_clicked = 0;
 int counter = 0;
-
-
 
 void button_processing(void){
 	for (int i = 0; i < 3; ++i){
@@ -34,31 +30,26 @@ void button_processing(void){
 		case BUTTON_RELEASED:
 			if(is_button_pressed(i)){
 				buttonState[i] = BUTTON_PRESSED;
+				// Nơi đặt immediately_press_handler() (em đã xóa vì không cần thiết trong bài tập này)
 				
-///////////////////immediately_press_handler();
 				flag_just_double_clicked = 0;
-
-
 			}
-
 			break;
 
 		case BUTTON_PRESSED:
 			if(!is_button_pressed(i)){
 				if(flag_just_double_clicked == 1) {
-
 					buttonState[i] = BUTTON_RELEASED;
 					flag_just_double_clicked = 0;
 				} else {
-
 					buttonState[i] = BUTTON_WAITING_FOR_SECOND_CLICK;
 					counter = 5;
 				}
 			} else {
 				if(is_button_pressed_1s(i)){
 					buttonState[i] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
-////////////////////// ngay lập tức kích khi 1s nhấn
-					immediately_1s_press(i);
+					/// ngay lập tức kích sau 1s nhấn (đã xóa do không cần thiết)
+					//immediately_1s_press(i);
 				}
 			}
 			break;
@@ -69,13 +60,13 @@ void button_processing(void){
 
 			if (is_button_pressed(i)) {
 				buttonState[i] = BUTTON_PRESSED;
-////////////////double click
+				//double click
 				double_press_handler(i);
 				flag_just_double_clicked = 1;
 
 			} else if (counter == 0) {
 				buttonState[i] = BUTTON_RELEASED;
-///////////////// Single Click
+				/// Single Press
 				single_press_handler(i);
 			}
 			break;
@@ -84,17 +75,11 @@ void button_processing(void){
 			if(!is_button_pressed(i)){
 				buttonState[i] = BUTTON_RELEASED;
 				flag_just_double_clicked = 0;
-
-////////////////// after_long_press
+				// after_long_press_handler(), kích hoạt sau khi nhả nút (đã xóa vì không cần thiết)
 
 			}
-
-/////////////////// liên tục kích
-
-
+			// liên tục kích hoạt sau 1 thời gian giữ
 			continuously_press_handler(i);
-
-
 			break;
 		}
 
@@ -112,14 +97,10 @@ void double_press_handler(int index){
 	double_press_button[index] = 1;
 }
 
-void immediately_1s_press(int index){
-	immediately_1s_press_button[index] = 1;
-}
 
 void continuously_press_handler(int index){
 	continuously_1s_press_button[index] = 1;
 }
-
 
 int isSinglePressed(int button_idx){
 	if(single_press_button[button_idx] == 1) {
@@ -131,10 +112,6 @@ int isSinglePressed(int button_idx){
 
 int isDoublePressed(int button_idx){
 	if(double_press_button[button_idx] == 1) return 1;
-	else return 0;
-}
-int isImmediately1sPressed(int button_idx){
-	if(immediately_1s_press_button[button_idx] == 1) return 1;
 	else return 0;
 }
 

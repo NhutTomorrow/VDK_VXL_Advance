@@ -15,7 +15,7 @@ struct TimerStruct{
 	int flag ;
 };
 
-extern struct TimerStruct timer[10];
+extern volatile struct TimerStruct timer[3];
 
 void setTimer(int index, int duration);
 void timer_run();

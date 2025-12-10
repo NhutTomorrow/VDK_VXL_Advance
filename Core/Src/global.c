@@ -6,8 +6,8 @@
  */
 #include "global.h"
 
-SystemState_t sys_state = AUTOMATIC_MODE;
-ManualState_t manual_state = INIT_MANUAL;
+SystemState_t sys_state = INIT_MODE;
+ManualState_t manual_state = RED1_GRE2_MANU;
 AutomaticState_t auto_state = INIT_AUTO;
 ConfigState_t config_state = SET_RED1;
 

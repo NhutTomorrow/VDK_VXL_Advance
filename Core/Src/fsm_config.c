@@ -5,32 +5,6 @@
  *      Author: Vinh Le
  */
 #include "global.h"
-#include "fsm_config.h"
-#include "scheduler.h"
-#include "input_processing.h"
-#include "led_display.h"
-#include "lcd_display.h"
-#include "scheduler.h"
-
-#include "i2c-lcd.h"
-void init_test(){
-//	lcd_clear_display();
-//	lcd_goto_XY(1, 1);
-//    lcd_send_string("test");
-	sys_state = AUTOMATIC_MODE;
-//	config_state = SET_RED1;
-	auto_state = INIT_AUTO;
-//	display_set_config();
-	set_rgy1( 0b00 );
-	set_rgy2( 0b00 );
-	lcd_clear_display();
-
-//	SCH_Add_Task(toggle_red1, 250, 250);
-
-	new_time = 1;
-}
-
-
 
 void fsm_config(void){
 	if(sys_state != CONFIG_MODE) return;
@@ -85,8 +59,8 @@ void set_red1_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_yel1, 250, 250);
 
@@ -141,8 +115,8 @@ void set_yel1_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_gre1, 250, 250);
 
@@ -196,8 +170,8 @@ void set_gre1_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_red2, 250, 250);
 
@@ -252,56 +226,14 @@ void set_red2_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_yel2, 250, 250);
 
 		resetButton(0);
 		resetButton(1);
 		resetButton(2);
-	}
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-	if(isDoublePressed(0)){
-		int ID = SCH_Get_TaskID(toggle_red2);
-		if(ID != -1) SCH_Delete_Task(ID);
-
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
-
-		new_time = 1;
-
-		sys_state = AUTOMATIC_MODE;
-		resetButton(0);
 	}
 
 	if(isSinglePressed(1)){
@@ -343,8 +275,8 @@ void set_red2_handler(){
 			ID = SCH_Get_TaskID(display_set_config);
 			if(ID != -1) SCH_Delete_Task(ID);
 
-			set_rgy1( 0b00 );
-			set_rgy2( 0b00 );
+			set_rgy1( LED_OFF );
+			set_rgy2( LED_OFF );
 
 			SCH_Add_Task(display_err_config, 10, 1000);
 			SCH_Add_Task(toggle_red1, 250, 250);
@@ -371,8 +303,8 @@ void set_yel2_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_gre2, 250, 250);
 
@@ -415,28 +347,30 @@ void set_yel2_handler(){
 	}
 }
 void set_gre2_handler(){
-	//////////////////////////////////////////
-	/////////////////////
-	/////////////////////////////
-		//////////////////////////////////////////
-	/////////////////////
-	/////////////////////////////
-		//////////////////////////////////////////
-	/////////////////////
-	/////////////////////////////
 	if(isSinglePressed(0)){
-		config_state = AUTOMATIC_MODE;
-
-		new_time = 1;
-
 		int ID = SCH_Get_TaskID(toggle_gre2);
 		if(ID != -1) SCH_Delete_Task(ID);
 		ID = SCH_Get_TaskID(display_set_config);
 		if(ID != -1) SCH_Delete_Task(ID);
 
-		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		if(new_red1 && new_yel1 && new_gre1 && new_red2 && new_yel2 && new_gre2){
+			time_red1 = new_red1;
+			time_yel1 = new_yel1;
+			time_gre1 = new_gre1;
+			time_red2 = new_red2;
+			time_yel2 = new_yel2;
+			time_gre2 = new_gre2;
+		}
+
+		new_red1 = 0;
+		new_yel1 = 0;
+		new_gre1 = 0;
+		new_red2 = 0;
+		new_yel2 = 0;
+		new_gre2 = 0;
+
+		sys_state = AUTOMATIC_MODE;
+		auto_state = INIT_AUTO;
 
 		resetButton(0);
 		resetButton(1);
@@ -482,8 +416,8 @@ void set_gre2_handler(){
 			ID = SCH_Get_TaskID(display_set_config);
 			if(ID != -1) SCH_Delete_Task(ID);
 
-			set_rgy1( 0b01 );
-			set_rgy2( 0b01 );
+			set_rgy1( LED_GREEN );
+			set_rgy2( LED_YELLOW );
 
 			SCH_Add_Task(display_err_config, 10, 1000);
 			SCH_Add_Task(toggle_yel_gre, 250, 250);
@@ -514,8 +448,8 @@ void err_syn_r2_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_yel2, 250, 250);
 
@@ -539,8 +473,8 @@ void err_syn_r2_handler(){
 		if(ID != -1) SCH_Delete_Task(ID);
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		SCH_Add_Task(toggle_red2, 250, 250);
 
@@ -551,11 +485,7 @@ void err_syn_r2_handler(){
 }
 
 void err_syn_gy2_handler(){
-	////////////Chuyển đổi sang AUTO
 	if(isSinglePressed(0)){
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
-
 		int ID = SCH_Get_TaskID(toggle_yel_gre); 
 		if(ID != -1) SCH_Delete_Task(ID);
 		ID = SCH_Get_TaskID(ERR_SYN_GY2_to_AUTOMATIC_MODE);
@@ -563,8 +493,28 @@ void err_syn_gy2_handler(){
 		ID = SCH_Get_TaskID(display_err_config);
 		if(ID != -1) SCH_Delete_Task(ID);
 
+		if(new_red1 && new_yel1 && new_gre1 && new_red2 && new_yel2 && new_gre2){
+			time_red1 = new_red1;
+			time_yel1 = new_yel1;
+			time_gre1 = new_gre1;
+			time_red2 = new_red2;
+			time_yel2 = new_yel2;
+			time_gre2 = new_gre2;
+		}
+
+		new_red1 = 0;
+		new_yel1 = 0;
+		new_gre1 = 0;
+		new_red2 = 0;
+		new_yel2 = 0;
+		new_gre2 = 0;
+
 		sys_state = AUTOMATIC_MODE;
+		auto_state = INIT_AUTO;
+
 		resetButton(0);
+		resetButton(1);
+		resetButton(2);
 	}
 
 	if(isSinglePressed(1)){
@@ -573,8 +523,8 @@ void err_syn_gy2_handler(){
 		new_time = 1;
 
 		display_set_config();
-		set_rgy1( 0b00 );
-		set_rgy2( 0b00 );
+		set_rgy1( LED_OFF );
+		set_rgy2( LED_OFF );
 
 		int ID = SCH_Get_TaskID(toggle_yel_gre);
 		if(ID != -1) SCH_Delete_Task(ID);
@@ -621,8 +571,8 @@ void ERR_SYN_R2_to_SET_YEL2(){
 	if(ID != -1) SCH_Delete_Task(ID);
 
 	display_set_config();
-	set_rgy1( 0b00 );
-	set_rgy2( 0b00 );
+	set_rgy1( LED_OFF );
+	set_rgy2( LED_OFF );
 
 	SCH_Add_Task(toggle_yel2, 250, 250);
 
@@ -631,13 +581,12 @@ void ERR_SYN_R2_to_SET_YEL2(){
 	resetButton(2);
 }
 
-// Có chuyển sang AUTO MODE
+
 void ERR_SYN_GY2_to_AUTOMATIC_MODE(){
 	int ID = SCH_Get_TaskID(toggle_yel_gre); 
 	if(ID != -1) SCH_Delete_Task(ID);
 	ID = SCH_Get_TaskID(display_err_config);
 	if(ID != -1) SCH_Delete_Task(ID);
-
 
 	if(new_red1 && new_yel1 && new_gre1 && new_red2 && new_yel2 && new_gre2){
 		time_red1 = new_red1;
@@ -655,12 +604,8 @@ void ERR_SYN_GY2_to_AUTOMATIC_MODE(){
 	new_yel2 = 0;
 	new_gre2 = 0;
 
-
-
-	set_rgy1( 0b00 );
-	set_rgy2( 0b00 );
-
 	sys_state = AUTOMATIC_MODE;
+	auto_state = INIT_AUTO;
 
 	resetButton(0);
 	resetButton(1);

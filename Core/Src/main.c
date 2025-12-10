@@ -26,10 +26,11 @@
 #include "fsm_manual.h"
 #include "fsm_automatic.h"
 #include "fsm_config.h"
+#include "fsm_system.h"
 #include "input_processing.h"
 #include "input_reading.h"
 #include "software_timer.h"
-#include "led_display.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,20 +103,13 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
-
-  init_test();
-//  setTimer(2, 10);
-
-
-
-//	HAL_GPIO_WritePin(LED_A_GPIO_Port, LED_A_Pin, 0);
-//	HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, 0);
-	  SCH_Add_Task(button_reading, 10, 10);
-	  SCH_Add_Task(timer_run, 10, 10);
-	  SCH_Add_Task(button_processing, 10, 10);
-//	  SCH_Add_Task(fsm_config, 10, 10);
-	  SCH_Add_Task(traffic_light_automatic, 10, 10);
-	  SCH_Add_Task(fsm_manual, 10, 10);
+ // SCH_Add_Task(timer_run, 10, 10);
+  SCH_Add_Task(button_reading, 10, 10);
+  SCH_Add_Task(button_processing, 10, 10);
+  SCH_Add_Task(fsm_system, 10, 10);
+  SCH_Add_Task(fsm_config, 10, 10);
+  SCH_Add_Task(fsm_automatic, 10, 10);
+  SCH_Add_Task(fsm_manual, 10, 10);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,12 +117,6 @@ int main(void)
   while (1)
   {
 	  SCH_Dispatch_Tasks();
-//	  if(isFlag(2)){
-//	  traffic_light_automatic();
-//	  setTimer(2, 10);
-//	  }
-//	  set_rgy1(0b10);
-//	  set_rgy2(0b01);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -289,11 +277,8 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//int counterr = 100;
-//int u = 0b01;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	SCH_Update();
-//	timer_run();
 }
 
 /* USER CODE END 4 */
