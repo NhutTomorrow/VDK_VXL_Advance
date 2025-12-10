@@ -1,0 +1,5 @@
+../Core/Src/lcd_display.c:13:6:display_set_config	16	static
+../Core/Src/lcd_display.c:61:6:display_err_config	8	static
+../Core/Src/lcd_display.c:95:6:display_value_confirmed	16	static
+../Core/Src/lcd_display.c:142:6:display_manual_mode	8	static
+../Core/Src/lcd_display.c:148:6:display_auto_mode	8	static

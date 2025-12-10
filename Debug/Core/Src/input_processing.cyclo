@@ -1,0 +1,10 @@
+../Core/Src/input_processing.c:30:6:button_processing	14
+../Core/Src/input_processing.c:107:6:single_press_handler	1
+../Core/Src/input_processing.c:111:6:double_press_handler	1
+../Core/Src/input_processing.c:115:6:immediately_1s_press	1
+../Core/Src/input_processing.c:119:6:continuously_press_handler	1
+../Core/Src/input_processing.c:124:5:isSinglePressed	2
+../Core/Src/input_processing.c:132:5:isDoublePressed	2
+../Core/Src/input_processing.c:136:5:isImmediately1sPressed	2
+../Core/Src/input_processing.c:141:5:isContinuouslyPressed	2
+../Core/Src/input_processing.c:146:6:resetButton	1

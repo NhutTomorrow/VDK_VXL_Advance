@@ -1,0 +1,10 @@
+../Core/Src/led_display.c:22:6:set_rgy1	5
+../Core/Src/led_display.c:50:6:set_rgy2	5
+../Core/Src/led_display.c:74:6:toggle_rgy	4
+../Core/Src/led_display.c:94:6:toggle_red1	1
+../Core/Src/led_display.c:98:6:toggle_yel1	1
+../Core/Src/led_display.c:101:6:toggle_gre1	1
+../Core/Src/led_display.c:105:6:toggle_red2	1
+../Core/Src/led_display.c:109:6:toggle_yel2	1
+../Core/Src/led_display.c:112:6:toggle_gre2	1
+../Core/Src/led_display.c:116:6:toggle_yel_gre	1
