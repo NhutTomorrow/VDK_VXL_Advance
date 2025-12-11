@@ -17,12 +17,24 @@ void setTimer(int index, int duration){
 }
 
 void timer_run(){
-	for(int i = 0; i < MAX_TIMER; ++i){
-		if(timer[i].counter > 0){
-			timer[i].counter--;
-			if(timer[i].counter <= 0 ){
-				timer[i].flag = 1;
-			}
+	if(timer[0].counter > 0){
+		timer[0].counter--;
+		if(timer[0].counter <= 0 ){
+			timer[0].flag = 1;
+		}
+	}
+
+	if(timer[1].counter > 0){
+		timer[1].counter--;
+		if(timer[1].counter <= 0 ){
+			timer[1].flag = 1;
+		}
+	}
+
+	if(timer[2].counter > 0){
+		timer[2].counter--;
+		if(timer[2].counter <= 0 ){
+			timer[2].flag = 1;
 		}
 	}
 }

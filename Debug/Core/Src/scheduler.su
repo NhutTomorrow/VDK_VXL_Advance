@@ -1,8 +1,8 @@
-scheduler.c:12:6:SCH_Init	8	static
-scheduler.c:17:15:SCH_Add_Task	48	static
-scheduler.c:47:6:addAt	40	static
-scheduler.c:83:15:SCH_Delete_Task	32	static
-scheduler.c:128:6:SCH_Dispatch_Tasks	24	static
-scheduler.c:150:6:SCH_Update	8	static
-scheduler.c:162:6:rearrange_ID	16	static
-scheduler.c:172:5:SCH_Get_TaskID	24	static
+scheduler.c:11:6:SCH_Init	8	static
+scheduler.c:16:15:SCH_Add_Task	48	static
+scheduler.c:46:6:addAt	40	static
+scheduler.c:82:15:SCH_Delete_Task	32	static
+scheduler.c:127:6:SCH_Dispatch_Tasks	24	static
+scheduler.c:149:6:SCH_Update	4	static
+scheduler.c:158:6:rearrange_ID	16	static
+scheduler.c:168:5:SCH_Get_TaskID	24	static

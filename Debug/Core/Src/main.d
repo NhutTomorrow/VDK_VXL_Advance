@@ -33,7 +33,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/software_timer.h ../Core/Inc/scheduler.h \
  ../Core/Inc/fsm_config.h ../Core/Inc/fsm_system.h \
  ../Core/Inc/input_processing.h ../Core/Inc/input_reading.h \
- ../Core/Inc/software_timer.h
+ ../Core/Inc/software_timer.h ../Core/Inc/i2c-lcd.h
 
 ../Core/Inc/main.h:
 
@@ -124,3 +124,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/input_reading.h:
 
 ../Core/Inc/software_timer.h:
+
+../Core/Inc/i2c-lcd.h:

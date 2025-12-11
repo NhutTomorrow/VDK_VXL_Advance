@@ -1,6 +1,5 @@
 #include <scheduler.h>
 #include "main.h"
-#include "software_timer.h"
 #include "stdint.h"
 #define TIMER_INTERRUPT_DURATION_MS 10
 #define SCH_MAX_TASKS 40
@@ -148,9 +147,6 @@ void SCH_Dispatch_Tasks(void){
 }
 
 void SCH_Update(void) {
-
-	timer_run();
-
 	if (SCH_tasks_G->head == NULL || SCH_tasks_G->head->data == NULL)
 	        return;
 	if(SCH_tasks_G->head->data->Delay <= 0)

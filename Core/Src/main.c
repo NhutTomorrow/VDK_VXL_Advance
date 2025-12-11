@@ -30,6 +30,7 @@
 #include "input_processing.h"
 #include "input_reading.h"
 #include "software_timer.h"
+#include "i2c-lcd.h"
 
 /* USER CODE END Includes */
 
@@ -103,7 +104,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
- // SCH_Add_Task(timer_run, 10, 10);
+  lcd_init();
+
   SCH_Add_Task(button_reading, 10, 10);
   SCH_Add_Task(button_processing, 10, 10);
   SCH_Add_Task(fsm_system, 10, 10);
@@ -279,6 +281,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	SCH_Update();
+	timer_run();
 }
 
 /* USER CODE END 4 */
